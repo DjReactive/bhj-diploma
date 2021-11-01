@@ -12,12 +12,10 @@ class TransactionsWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor( element ) {
-    try {
+    if (typeof(element) === 'object') {
       this.element = element;
-      if (User.current()) this.registerEvents();
-    } catch (e) {
-      throw 'Переданный элемент не существует';
-    }
+      this.registerEvents();
+    } else throw 'Переданный элемент не существует';
   }
   /**
    * Регистрирует обработчики нажатия на

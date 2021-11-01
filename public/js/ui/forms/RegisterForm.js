@@ -15,6 +15,7 @@ class RegisterForm extends AsyncForm {
       else {
         App.setState('user-logged');
         App.getModal('register').close();
+        App.update();
       }
     });
   }

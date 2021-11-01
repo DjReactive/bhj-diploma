@@ -5,11 +5,12 @@
 const createRequest = (options = {}) => {
   let err = null, xhr = new XMLHttpRequest();
   let formData = new FormData();
-  for (let key in options.data) formData.append(key, options.data[key]);
+  if (options.hasOwnProperty('data'))
+    for (let key in options.data) formData.append(key, options.data[key]);
 
   xhr.open(options.method, options.url);
   xhr.withCredentials = true;
-  xhr.responseType = options.responseType;
+  xhr.responseType = 'json';
   xhr.send(formData);
 
   xhr.addEventListener('readystatechange', () => {

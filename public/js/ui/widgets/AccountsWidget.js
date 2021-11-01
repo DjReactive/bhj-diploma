@@ -14,12 +14,12 @@ class AccountsWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor( element ) {
-    try {
+    if (typeof(element) === 'object') {
       this.element = element;
+      this.curID = null;
       this.registerEvents();
-    } catch (e) {
-      throw 'Переданный элемент не существует';
-    }
+      this.update();
+    } else throw 'Переданный элемент не существует';
   }
 
   /**
@@ -32,6 +32,10 @@ class AccountsWidget {
   registerEvents() {
     const createBut = this.element.querySelector('.create-account');
     createBut.addEventListener('click', () => App.getModal('createAccount').open());
+
+    this.element.addEventListener('click', (event) => {
+      this.onSelectAccount(event.target.closest('li.account'));
+    });
   }
 
   /**
@@ -73,12 +77,15 @@ class AccountsWidget {
    * счёта класс .active.
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
-  onSelectAccount (all, element) {
-    all.forEach(acc => {
-      if (acc === element) {
-        acc.classList.add('active');
-        App.showPage('transactions', { account_id: acc.dataset.id });
-      } else acc.classList.remove('active');
+  onSelectAccount (element) {
+    this.element.querySelectorAll('li').forEach(acc => {
+      if (element !== null && element.classList.contains('account')) {
+        if (acc === element) {
+          acc.classList.add('active');
+          App.showPage('transactions', { account_id: acc.dataset.id });
+          this.curID = acc.dataset.id;
+        } else acc.classList.remove('active');
+      }
     });
   }
 
@@ -88,8 +95,10 @@ class AccountsWidget {
    * item - объект с данными о счёте
    * */
   getAccountHTML(item){
+    let active = " ";
+    if (this.curID === item.id) active += "active";
     return `
-    <li class="account" data-id="${item.id}">
+    <li class="account${active}" data-id="${item.id}">
       <a href="#">
         <span>${item.name}</span> / <span>${item.sum} ₽</span>
       </a>
@@ -106,7 +115,7 @@ class AccountsWidget {
     Array.from(data).forEach((item) => {
       this.element.insertAdjacentHTML('beforeend', this.getAccountHTML(item));
     });
-    let accounts = this.element.querySelectorAll('.account');
-    accounts.forEach(acc => acc.onclick = () => this.onSelectAccount(accounts, acc));
+    //let accounts = this.element.querySelectorAll('.account');
+    //accounts.forEach(acc => acc.onclick = () => this.onSelectAccount(accounts, acc));
   }
 }

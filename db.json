@@ -11,6 +11,12 @@
       "email": "undefined",
       "password": "undefined",
       "id": "fogzirc2skuz4a868"
+    },
+    {
+      "name": "Nikita Semakin",
+      "email": "dragon768@mail.ru",
+      "password": "12345",
+      "id": "fogzirak4kv9k5l07"
     }
   ],
   "accounts": [
@@ -28,6 +34,11 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
+    },
+    {
+      "name": "Сбербанк",
+      "user_id": "fogzirak4kv9k5l07",
+      "id": "fogzir3uwkvako0ey"
     }
   ],
   "transactions": [
@@ -156,6 +167,51 @@
       "sum": 60000,
       "type": "expense",
       "user_id": "1"
+    },
+    {
+      "id": "ssn5ickvgfynl7",
+      "type": "income",
+      "name": "1",
+      "sum": 54353,
+      "account_id": "fogzir3uwkvako0ey",
+      "user_id": "fogzirak4kv9k5l07",
+      "created_at": "2021-11-01T09:10:04.266Z"
+    },
+    {
+      "id": "ssna20kvgg3tq4",
+      "type": "income",
+      "name": "4",
+      "sum": 2342,
+      "account_id": "fogzir3uwkvako0ey",
+      "user_id": "fogzirak4kv9k5l07",
+      "created_at": "2021-11-01T09:14:05.499Z"
+    },
+    {
+      "id": "ssn2sgkvggdw1y",
+      "type": "expense",
+      "name": "3",
+      "sum": 21313,
+      "account_id": "fogzir3uwkvako0ey",
+      "user_id": "fogzirak4kv9k5l07",
+      "created_at": "2021-11-01T09:21:55.077Z"
+    },
+    {
+      "id": "ssn104kvggdz9m",
+      "type": "expense",
+      "name": "1",
+      "sum": 13,
+      "account_id": "fogzir3uwkvako0ey",
+      "user_id": "fogzirak4kv9k5l07",
+      "created_at": "2021-11-01T09:21:59.241Z"
+    },
+    {
+      "id": "ssnchkkvgge2wr",
+      "type": "expense",
+      "name": "232",
+      "sum": 311,
+      "account_id": "fogzir3uwkvako0ey",
+      "user_id": "fogzirak4kv9k5l07",
+      "created_at": "2021-11-01T09:22:03.962Z"
     }
   ]
 }

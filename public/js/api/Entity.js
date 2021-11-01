@@ -15,10 +15,7 @@ class Entity {
     createRequest({
       url: this.url + addUrl,
       method: 'GET',
-      responseType: 'json',
-      callback: (err, response) => {
-        callback(err, response);
-      }
+      callback
     });
   }
 
@@ -31,11 +28,8 @@ class Entity {
     createRequest({
       url: this.url,
       method: 'PUT',
-      responseType: 'json',
       data,
-      callback: (err, response) => {
-        callback(err, response);
-      }
+      callback
     });
   }
 
@@ -43,15 +37,12 @@ class Entity {
    * Удаляет информацию о счёте или доходе/расходе
    * (в зависимости от того, что наследуется от Entity)
    * */
-  static remove(data, callback ) {
+  static remove(data, callback) {
     createRequest({
       url: this.url,
       method: 'DELETE',
-      responseType: 'json',
       data,
-      callback: (err, response) => {
-        callback(err, response);
-      }
+      callback
     });
   }
 }

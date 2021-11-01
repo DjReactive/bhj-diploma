@@ -20,16 +20,15 @@ class Account extends Entity {
   }
 
   /**
-   * Получает ID текущего выбранного счета
+   * Получает ID текущего выбранного счета ПРОБЛЕМА ЗДЕСЬ!
    * */
   static current(){
-    let accTree = App.getWidget('accounts').element;
-    let accounts = accTree.querySelectorAll('.account');
-    for (let i=0; i < accounts.length; i++) {
-      if (accounts[i].classList.contains('active'))
-        return accounts[i].dataset.id;
-    }
-    return null;
+    let id = null, accTree = App.getWidget('accounts').element;
+    let accounts = accTree.getElementsByClassName('account');
+    Array.from(accounts).forEach(acc => {
+      if (acc.classList.contains('active')) id = acc.dataset.id;
+    });
+    return id;
   }
 
 }

@@ -37,11 +37,11 @@ class Sidebar {
     const logIn = document.querySelector(".menu-item_login");
     const logOut = document.querySelector('.menu-item_logout');
     const register = document.querySelector('.menu-item_register');
-    let modal;
     logIn.onclick = () => App.getModal('login').open();
     logOut.onclick = () => User.logout((unsetFunc) => {
-      App.setState("init");
       unsetFunc();
+      App.setState("init");
+      App.update();
     });
     register.onclick = () => App.getModal('register').open();
   }

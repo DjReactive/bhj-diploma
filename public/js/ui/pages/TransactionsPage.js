@@ -14,7 +14,7 @@ class TransactionsPage {
     try {
       this.element = element;
       this.lastOptions = {};
-      if (User.current()) this.registerEvents();
+      this.registerEvents();
     } catch (e) {
       throw 'Переданный элемент не существует';
     }
@@ -24,7 +24,10 @@ class TransactionsPage {
    * Вызывает метод render для отрисовки страницы
    * */
   update() {
-    this.render(this.lastOptions);
+    let accID = Account.current();
+    if (accID !== null) {
+      this.render({ account_id: accID });
+    }
   }
 
   /**
@@ -36,6 +39,11 @@ class TransactionsPage {
   registerEvents() {
     const removeBut = document.querySelector('.remove-account');
     removeBut.addEventListener('click', this.removeAccount);
+
+    this.element.addEventListener('click', (event) => {
+      let button = event.target.closest('button.transaction__remove');
+      if (button !== null) this.removeTransaction(button.dataset.id);
+    });
   }
 
   /**
@@ -51,8 +59,10 @@ class TransactionsPage {
     let accID = Account.current();
     if (accID !== null) {
       Account.get(accID, data => {
-        if (confirm(`Вы действительно хотите удалить счет ${data.name}?`))
+        if (confirm(`Вы действительно хотите удалить счет ${data.name}?`)) {
           Account.remove(data, () => App.update());
+          App.updateWidgets();
+        }
       })
     }
   }
@@ -160,10 +170,6 @@ class TransactionsPage {
     content.innerHTML = '';
     Array.from(data).forEach(transaction => {
       content.insertAdjacentHTML('afterbegin', this.getTransactionHTML(transaction));
-    });
-    let buttons = this.element.querySelectorAll('.transaction__remove');
-    buttons.forEach(el => {
-      el.addEventListener('click', () => this.removeTransaction(el.dataset.id))
     });
   }
 }

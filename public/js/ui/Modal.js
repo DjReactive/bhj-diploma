@@ -12,12 +12,10 @@ class Modal {
    * необходимо выкинуть ошибку.
    * */
   constructor(element){
-    try {
+    if (typeof(element) === 'object') {
       this.element = element;
       this.registerEvents();
-    } catch(e) {
-      Error('Argument is not found');
-    }
+    } else throw 'Переданный элемент не существует';
   }
 
   /**
@@ -37,6 +35,8 @@ class Modal {
    * Закрывает текущее окно (Modal.close())
    * */
   onClose(e) {
+    const form = this.element.querySelector('.form');
+    form.reset();
     this.close();
   }
   /**

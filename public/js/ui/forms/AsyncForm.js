@@ -29,6 +29,7 @@ class AsyncForm {
     this.form.addEventListener('submit', event => {
       event.preventDefault();
       this.submit();
+      this.form.reset();
     });
   }
 
@@ -54,7 +55,6 @@ class AsyncForm {
    * данные, полученные из метода getData()
    * */
   submit() {
-    let opt = this.getData();
-    this.onSubmit(opt);
+    this.onSubmit(this.getData());
   }
 }
