@@ -196,22 +196,13 @@
       "created_at": "2021-11-01T09:21:55.077Z"
     },
     {
-      "id": "ssn104kvggdz9m",
+      "id": "ssn7fwkvnpof66",
       "type": "expense",
       "name": "1",
-      "sum": 13,
+      "sum": 21313,
       "account_id": "fogzir3uwkvako0ey",
       "user_id": "fogzirak4kv9k5l07",
-      "created_at": "2021-11-01T09:21:59.241Z"
-    },
-    {
-      "id": "ssnchkkvgge2wr",
-      "type": "expense",
-      "name": "232",
-      "sum": 311,
-      "account_id": "fogzir3uwkvako0ey",
-      "user_id": "fogzirak4kv9k5l07",
-      "created_at": "2021-11-01T09:22:03.962Z"
+      "created_at": "2021-11-06T11:16:26.189Z"
     }
   ]
 }

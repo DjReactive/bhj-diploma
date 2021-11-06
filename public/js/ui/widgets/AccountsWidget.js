@@ -14,12 +14,11 @@ class AccountsWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor( element ) {
-    if (typeof(element) === 'object') {
-      this.element = element;
-      this.curID = null;
-      this.registerEvents();
-      this.update();
-    } else throw 'Переданный элемент не существует';
+    if (!element) throw new Error('Переданный элемент не существует');
+
+    this.element = element;
+    this.curID = null;
+    this.registerEvents();
   }
 
   /**
@@ -79,7 +78,7 @@ class AccountsWidget {
    * */
   onSelectAccount (element) {
     this.element.querySelectorAll('li').forEach(acc => {
-      if (element !== null && element.classList.contains('account')) {
+      if (element && element.classList.contains('account')) {
         if (acc === element) {
           acc.classList.add('active');
           App.showPage('transactions', { account_id: acc.dataset.id });

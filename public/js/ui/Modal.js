@@ -12,10 +12,10 @@ class Modal {
    * необходимо выкинуть ошибку.
    * */
   constructor(element){
-    if (typeof(element) === 'object') {
-      this.element = element;
-      this.registerEvents();
-    } else throw 'Переданный элемент не существует';
+    if (!element) throw new Error('Переданный элемент не существует');
+    
+    this.element = element;
+    this.registerEvents();
   }
 
   /**

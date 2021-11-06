@@ -27,7 +27,6 @@ class User {
    * из локального хранилища
    * */
   static current() {
-    if (!localStorage.getItem('user')) return undefined;
     return JSON.parse(localStorage.getItem('user'));
   }
 
@@ -97,7 +96,10 @@ class User {
       method: 'POST',
       data: this.current(),
       callback: (err, response) => {
-        if (!err) callback(this.unsetCurrent);
+        if (!err) {
+          callback(this.unsetCurrent);
+          App.update();
+        }
       }
     });
   }

@@ -11,13 +11,11 @@ class TransactionsPage {
    * через registerEvents()
    * */
   constructor( element ) {
-    try {
-      this.element = element;
-      this.lastOptions = {};
-      this.registerEvents();
-    } catch (e) {
-      throw 'Переданный элемент не существует';
-    }
+    if (!element) throw new Error('Переданный элемент не существует');
+
+    this.element = element;
+    this.lastOptions = {};
+    this.registerEvents();
   }
 
   /**
@@ -25,9 +23,7 @@ class TransactionsPage {
    * */
   update() {
     let accID = Account.current();
-    if (accID !== null) {
-      this.render({ account_id: accID });
-    }
+    if (accID) this.render({ account_id: accID });
   }
 
   /**
@@ -57,7 +53,7 @@ class TransactionsPage {
    * */
   removeAccount() {
     let accID = Account.current();
-    if (accID !== null) {
+    if (accID) {
       Account.get(accID, data => {
         if (confirm(`Вы действительно хотите удалить счет ${data.name}?`)) {
           Account.remove(data, () => App.update());

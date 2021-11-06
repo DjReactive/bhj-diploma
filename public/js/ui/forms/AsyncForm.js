@@ -13,12 +13,11 @@ class AsyncForm {
    * через registerEvents()
    * */
   constructor(element) {
-    try {
-      this.form = element;
-      this.registerEvents();
-    } catch (e) {
-      throw 'Переданный элемент не существует';
-    }
+    if (!element) throw new Error('Переданный элемент не существует');
+
+    this.lastOptions = {};
+    this.form = element;
+    this.registerEvents();
   }
 
   /**
